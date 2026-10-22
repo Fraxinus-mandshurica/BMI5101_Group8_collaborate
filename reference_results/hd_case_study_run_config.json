@@ -1,0 +1,124 @@
+{
+  "disease": "C0020179",
+  "disease_name": "Huntington disease",
+  "protocol": "ten negative-set predictions; full-known-positive classifier refit; no HD label holdout",
+  "reference": "Bang et al. 2023 case study and Methods; doi:10.1038/s41467-023-39301-y",
+  "ns_seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "negative_sampling": "sorted drugs x sorted diseases minus ALL known positives; balanced sets; seed0 saved sample; seeds1-9 Random(seed).sample(remaining); no cross-set overlap",
+  "label_order": "sorted positive pairs followed by each saved negative list",
+  "training_positives_per_model": 5926,
+  "training_negatives_per_model": 5926,
+  "classifier_seed": 0,
+  "candidate_scope": "all embedded MSI drugs; exclude known HD positives from candidate ranking",
+  "aggregation": "mean score across all 10 sets; sample SD ddof=1; ties by drug ID",
+  "uncertainty_scope": "negative-set variability conditional on one fixed corrected embedding",
+  "source": {
+    "embedding_run": "msi_seed0_mesh2024_final_fixed",
+    "embedding_fingerprint": "c3378186faf61cd568e69cd27db8d632a1e004ab34900b1a204cbde4f59324df",
+    "settings": {
+      "pp": 1,
+      "tp_factor": 0.3,
+      "seed": 0,
+      "num_walks": 100,
+      "walk_length": 10,
+      "dimension": 128,
+      "window_size": 4,
+      "workers": 4,
+      "epochs": 1,
+      "negative": 5,
+      "sample": 0.001,
+      "folds": 10,
+      "cv_seed": 0,
+      "ns_pool": "positive_output_type",
+      "reject_positive_output": true,
+      "rejection_policy": "skip_without_resampling",
+      "teleport_selector": "first_hit"
+    },
+    "semantic": {
+      "mesh_year": 2024,
+      "cutoff": 0.4,
+      "letter_roots": true
+    },
+    "xgboost": {
+      "base_score": 0.5,
+      "booster": "gbtree",
+      "eval_metric": "error",
+      "objective": "binary:logistic",
+      "gamma": 0,
+      "learning_rate": 0.1,
+      "max_depth": 6,
+      "n_estimators": 500,
+      "tree_method": "auto",
+      "min_child_weight": 4,
+      "subsample": 0.8,
+      "colsample_bytree": 0.9,
+      "scale_pos_weight": 1,
+      "max_delta_step": 1,
+      "seed": 0,
+      "n_jobs": 4
+    },
+    "feature": "drug_embedding - disease_embedding",
+    "packages": {
+      "numpy": "1.23.3",
+      "scikit-learn": "1.1.3",
+      "xgboost": "1.7.4"
+    },
+    "inputs": {
+      "embedding": {
+        "path": "data/embeddings/msi_seed0_mesh2024_final_fixed/pp1.pkl",
+        "sha256": "9a0a8a6c0b995deee13a2eaeed46f573c423e7552759d628a397b62d517898da"
+      },
+      "embedding_config": {
+        "path": "results/msi_seed0_mesh2024_final_fixed/run_config.json",
+        "sha256": "b56260b0f61f4932ce4eacdce83b5175237efbaa328787741ffb0bc769232be1"
+      },
+      "embedding_complete": {
+        "path": "results/msi_seed0_mesh2024_final_fixed/pp1_embedding_complete.json",
+        "sha256": "ff11d87e4b4aa8e430bdf4536d8d693f5cadcf10599297e423a58706400fbff9"
+      },
+      "graph": {
+        "path": "data/processed/msi_graph.tsv",
+        "sha256": "8285845165826358275bc3dc379608a4e2de656b5398b5701123810eb51c61da"
+      },
+      "nodetypes": {
+        "path": "data/processed/msi_nodetypes.tsv",
+        "sha256": "4e6898e31e3a06eb4d374b817c2a39cb42250534b5e6d46c0290fd0d1064e072"
+      },
+      "positives": {
+        "path": "data/processed/msi_positive_pairs.tsv",
+        "sha256": "5e8a402186092d94a5c576b754b12bb93ad90e4e51f851c20bba6e928bb7a5a4"
+      },
+      "negatives": {
+        "path": "results/msi_repeat0_negative_pairs.csv",
+        "sha256": "f17ba4218f7bbc58b8bf4f9341eb53b55980dbf37faa9de17459bb64a3ee1a47"
+      },
+      "drug_names": {
+        "path": "data/msi_raw/1_drug_to_protein.tsv",
+        "sha256": "eaadd2d7b5d4403aa21ea7f5014ac280fa6651de356dd32a80c11b3ee52ca702"
+      },
+      "dda_names": {
+        "path": "data/msi_raw/6_drug_indication_df.tsv",
+        "sha256": "0f592cc02d0ee130ce774f1cddce8cfbf094fe27e7cb2e8f13a9d238af38fb94"
+      }
+    }
+  },
+  "helper_sha256": {
+    "hd_prediction.py": "7d529540c2ddc0cd0a241e0bd09d9d2c82bb45be976aef1cb6da46b934907fe3",
+    "hd_paper_prediction.py": "a83f3b84a501454002886bf36c3656f011b21d9491489f1b5f72533905f97f76"
+  },
+  "notebook_code_sha256": "4a3fc2102dbe35704af4cd5bbae4977816244713f7a8227f25d1c721545b40bc",
+  "python": "3.8.20 | packaged by conda-forge | (default, Sep 30 2024, 17:48:42) \n[Clang 17.0.6 ]",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "fingerprint": "ca3b9ffa6a550c75a24da8e9f350821039202e04f1bb94c7570c8da43e3dca24"
+}

@@ -1,0 +1,11 @@
+drug,drug_name,disease,disease_name,mean_score,sd_score,n_negative_sets,known_in_msi,training_negative_count,training_negative_fraction,rank_all,candidate_rank
+DB00915,amantadine,C0020179,Huntington disease,0.8944921433925629,0.05416804694942488,10,False,0,0.0,4,1
+DB01588,Prazepam,C0020179,Huntington disease,0.8832625687122345,0.06548882178309552,10,False,0,0.0,5,2
+DB00186,lorazepam,C0020179,Huntington disease,0.8806835353374481,0.06177895037729298,10,False,0,0.0,6,3
+DB00418,Secobarbital,C0020179,Huntington disease,0.8796359241008759,0.05492474198576088,10,False,0,0.0,7,4
+DB00829,diazepam,C0020179,Huntington disease,0.8791029572486877,0.062307634204986063,10,False,0,0.0,8,5
+DB00312,Pentobarbital,C0020179,Huntington disease,0.8789740324020385,0.06009570799800541,10,False,0,0.0,9,6
+DB01068,clonazepam,C0020179,Huntington disease,0.8768393456935882,0.05755627857950917,10,False,0,0.0,10,7
+DB01174,Phenobarbital,C0020179,Huntington disease,0.8667290866374969,0.06257638970576884,10,False,0,0.0,11,8
+DB12867,benperidol,C0020179,Huntington disease,0.8634254097938537,0.042547234893306245,10,False,0,0.0,12,9
+DB01173,orphenadrine,C0020179,Huntington disease,0.8583218336105347,0.04936141677357612,10,False,0,0.0,13,10

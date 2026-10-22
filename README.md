@@ -2,7 +2,7 @@
 
 Code for the BMI5101 Group 8 reproduction of the [DREAMwalk paper by Bang et al. (2023)](https://doi.org/10.1038/s41467-023-39301-y).
 
-This repository contains DREAMwalk experiments on **MSI, Hetionet and KEGG**, MSI baseline reconstructions, and controlled analyses of walk generation and Skip-gram training. It preserves the original implementation alongside explicitly labeled diagnostic variants.
+This repository contains DREAMwalk experiments on **MSI, Hetionet and KEGG**, MSI baseline reconstructions, controlled analyses of walk generation and Skip-gram training, and a **Huntington disease (HD) drug-ranking case study**. It preserves the original implementation alongside explicitly labeled diagnostic variants.
 
 **Main finding:** Hetionet reaches comparable performance, KEGG scores higher on a different reconstructed snapshot, and MSI remains below the paper. MSI node2vec, edge2vec and SEAL comparisons support the shared molecular inputs and evaluation. A combined DREAMwalk variant reaches MSI AUROC **0.916308**, compared with **0.882394** for the original algorithm on the revised MeSH2024 input and **0.944060** in the paper. These observations support partial reproduction; they do not establish the cause of every remaining difference.
 
@@ -22,7 +22,9 @@ This repository contains DREAMwalk experiments on **MSI, Hetionet and KEGG**, MS
 ├── 02.DTi2vec_reproduction/
 ├── 03.edge2vec_reproduction/
 └── 04.SEAL_reproduction/
-reference_results/       # Historical summary metrics; not active checkpoints
+01.case_study/
+└── 01.HD/               # HD prediction notebook, helpers and synthetic tests
+reference_results/       # Historical metrics and HD ranking snapshots; not checkpoints
 README.md
 ```
 
@@ -31,6 +33,8 @@ Each model directory contains its notebook, source and environment specification
 This is a **code release**. Local raw datasets, licensed UMLS files, processed research inputs, walk corpora, trained models, installed environments, logs and historical checkpoint configurations are not included. Notebook outputs/execution counts are cleared. Working journals and duplicate notebook archives are omitted. No `.gitignore` files are tracked.
 
 `reference_results/historical_metrics.csv` preserves 23 completed local result summaries, with their original relative paths and source-file SHA-256 values. These are historical observations, not runs executed during publication. They live outside active `results/` paths so that they cannot be mistaken for resumable checkpoints.
+
+The completed HD top-ten ranking, negative-set counts and original run configuration are also included as reference snapshots. Trained classifiers, full working results and duplicate notebook archives remain local.
 
 ## 2. Notebook entry points
 
@@ -44,8 +48,9 @@ This is a **code release**. Local raw datasets, licensed UMLS files, processed r
 | MSI edge2vec | [MSI_edge2vec_seed0_local.ipynb](00.Reproduction/03.edge2vec_reproduction/notebooks/MSI_edge2vec_seed0_local.ipynb) |
 | MSI SEAL | [MSI_SEAL_seed0_local.ipynb](00.Reproduction/04.SEAL_reproduction/notebooks/MSI_SEAL_seed0_local.ipynb) |
 | Historical MSI Linux comparison | [DREAMwalk_MSI_seed0_Colab.ipynb](00.Reproduction/00.DREAMwalk_reproduction/colab/DREAMwalk_MSI_seed0_Colab.ipynb) |
+| HD case study: ten negative-set predictions | [HD_DREAMwalk_drug_prediction.ipynb](01.case_study/01.HD/notebooks/HD_DREAMwalk_drug_prediction.ipynb) |
 
-The notebooks expose parameters, individual computation stages and result displays. They use a local Python 3 host kernel to launch model-specific interpreters. Baseline notebooks can create their own environments on first use. A prepared workspace is required for MSI: cloning this code alone does not supply the saved inputs and historical artifacts used by its controls.
+The notebooks expose parameters, individual computation stages and result displays. Reproduction notebooks use a local Python 3 host kernel to launch model-specific interpreters. Baseline notebooks can create their own environments on first use. The HD notebook runs directly in the existing DREAMwalk Python 3.8 kernel. A prepared workspace is required for MSI and HD: cloning this code alone does not supply their saved inputs, embeddings or checkpoint records.
 
 **Choose sections deliberately in the MSI notebook.** Its controls follow the historical investigation and some require completed reference experiments. Do not treat `Run All` as a short fresh-clone demonstration.
 
@@ -303,3 +308,68 @@ Tests use synthetic inputs, source patches, mocked scientific stages and small n
 Third-party code retains its original license notices. DREAMwalk's full tracked snapshot is included unchanged; edge2vec's example data ZIP and `.gitignore` are omitted. Its original snapshot manifest still records those upstream entries. SEAL/DGCNN include the source subset recorded in `vendor/manifest.json`. No claim of authorship or relicensing of those components is made.
 
 Paper comparisons use the authors' [Source Data workbook](https://pmc.ncbi.nlm.nih.gov/articles/instance/10272215/bin/41467_2023_39301_MOESM4_ESM.xlsx). Per-model reference tables and provenance record extracted cells and values. Historical local tables retain their own run identities; no full benchmark was executed to prepare this release.
+
+## 11. Huntington disease case study
+
+### 11.1 Current prediction design
+
+Target **Huntington disease**, MSI CUI **`C0020179`**. Reuse the completed `msi_seed0_mesh2024_final_fixed/pp1.pkl` embedding: MeSH2024, embedding seed 0, τ=0.3, modified pp=1, first-hit teleport, positive-output-type Skip-gram NS and current-positive rejection. No new graph, walks or embeddings are required.
+
+The current notebook trains **ten XGBoost classifiers** and aggregates their drug rankings:
+
+1. Each classifier uses **all 5,926 known DDA positives**, including the five known HD positives, and 5,926 link-level negatives.
+2. Link-level NS seeds are **0–9**. Preserve the original seed-0 negative IDs/order. Sample later sets sequentially from remaining unknown drug–disease pairs, excluding all known positives and previously sampled negatives. The ten sets are pairwise disjoint.
+3. Keep the embedding, XGBoost settings, Python/NumPy training seeds and classifier seed fixed at 0. Only the link-negative set changes.
+4. For each classifier, fix HD and score every one of the **1,661 MSI drugs**, using `drug embedding − HD embedding`.
+5. Rank by mean score across all ten classifiers and report sample SD (`ddof=1`). Exclude the five known HD positives from the candidate list, leaving **1,656 candidates**.
+
+This is **full-known-positive classifier refitting**, without HD-label holdout or ten-fold CV. The legacy input helper still returns HD/non-HD partitions for compatibility; the notebook immediately recombines them before training. A sampled HD training-negative pair remains in the candidate list and is marked by `training_negative_count` and `training_negative_fraction`. Disjoint sampling limits each pair to at most one negative set.
+
+The paper's case-study design uses repeated predictions with different negative sets, mean ranking and SD. The complete case-study refit script is unavailable. Full-positive refitting, pairwise-disjoint negative construction and one fixed modified embedding are explicit local choices; the case-study paragraph itself specifies different sets, while the non-overlap convention follows the Methods. SD here measures negative-set variability conditional on that embedding, not CV or embedding-retraining uncertainty.
+
+### 11.2 Run the notebook
+
+Open the [HD notebook](01.case_study/01.HD/notebooks/HD_DREAMwalk_drug_prediction.ipynb) and select:
+
+```text
+00.Reproduction/00.DREAMwalk_reproduction/environment/.conda-env/bin/python
+```
+
+Run from top to bottom; **Section 5 starts classifier training**. Use the already completed embedding and its matching original `run_config.json` and `pp1_embedding_complete.json`, along with the shared MSI graph, node types, positive pairs, saved seed-0 negatives and the two raw drug-name TSVs listed by `load_inputs` in `src/hd_prediction.py`. Input hashes and the selected embedding variant are checked before model fitting. These working inputs are not distributed here.
+
+Each classifier and prediction table is saved immediately. Matching checkpoints can be reused after interruption. English message translations change the notebook-code fingerprint, so copied historical HD checkpoints may require the original compatible notebook or a separate new `RUN_NAME`. Do not edit old fingerprints to bypass identity checks.
+
+Outputs use `01.case_study/01.HD/results/hd_mesh2024_fixed_ns_seed0_9/`:
+
+- `run_config.json`, `positive_pairs.csv`, `negative_sampling_summary.csv` and sampling completion record.
+- `seed00/`–`seed09/`: actual negative pairs, `classifier.json`, drug scores and completion records.
+- `per_seed_scores.csv`, `all_drugs_ranked.csv`, `novel_candidates_ranked.csv`, `top10_candidates.csv`, `top20_candidates.csv` and aggregation completion record.
+- `known_hd_associations_ranked.csv`: in-sample scores for previously labeled HD associations, not independent predictive validation.
+
+Synthetic HD tests can be run from the repository root without loading MSI inputs or training classifiers:
+
+```bash
+00.Reproduction/00.DREAMwalk_reproduction/environment/.conda-env/bin/python \
+  -m unittest discover -s 01.case_study/01.HD/tests -v
+```
+
+### 11.3 Completed ten-set ranking
+
+The original local run completed sampling, all ten classifiers/predictions and aggregation. Its checkpoint records and output hashes were checked during publication; the models were not retrained. See the full-precision [top-ten snapshot](reference_results/hd_top10_candidates.csv), [negative-set counts](reference_results/hd_negative_sampling_summary.csv) and [original run configuration](reference_results/hd_case_study_run_config.json). These snapshots preserve the original run identity rather than acting as new English-notebook checkpoints.
+
+| Candidate rank | Drug ID | Drug name | Mean score | Sample SD |
+|---|---|---|---:|---:|
+| 1 | DB00915 | amantadine | 0.894492 | 0.054168 |
+| 2 | DB01588 | Prazepam | 0.883263 | 0.065489 |
+| 3 | DB00186 | lorazepam | 0.880684 | 0.061779 |
+| 4 | DB00418 | Secobarbital | 0.879636 | 0.054925 |
+| 5 | DB00829 | diazepam | 0.879103 | 0.062308 |
+| 6 | DB00312 | Pentobarbital | 0.878974 | 0.060096 |
+| 7 | DB01068 | clonazepam | 0.876839 | 0.057556 |
+| 8 | DB01174 | Phenobarbital | 0.866729 | 0.062576 |
+| 9 | DB12867 | benperidol | 0.863425 | 0.042547 |
+| 10 | DB01173 | orphenadrine | 0.858322 | 0.049361 |
+
+Names retain the MSI source spelling. Every listed top-ten pair has `training_negative_count=0`. “Candidate” means absent from the current MSI HD positive labels, not previously unstudied in HD. Scores are uncalibrated ranking outputs, not clinical probabilities or evidence of efficacy; known HD positives were included in training and their scores cannot serve as a held-out validation.
+
+The original single-classifier HD-label-holdout workflow remains a historical comparison in the working project. Its rankings must not be mixed with the current ten-set results. This release retains its low-level helper functions/tests but excludes duplicate notebook archives and historical trained artifacts. Literature assessment and biological interpretation remain separate work; this publication adds no new clinical-efficacy claims.
