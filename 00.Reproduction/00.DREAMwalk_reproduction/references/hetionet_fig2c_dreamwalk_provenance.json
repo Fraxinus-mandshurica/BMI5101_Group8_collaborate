@@ -1,0 +1,140 @@
+{
+  "source": "Author-provided DREAMwalk Source Data workbook; values are not estimated from the figure",
+  "paper": "Bang et al. (2023), Nature Communications, DOI 10.1038/s41467-023-39301-y",
+  "external_url": "https://pmc.ncbi.nlm.nih.gov/articles/instance/10272215/bin/41467_2023_39301_MOESM4_ESM.xlsx",
+  "workbook_path": "data/source_data.xlsx",
+  "workbook_sha256": "3934843a02dd862c04db41aab8832951f861466c1fdfde669d7d0cdcf31d5ec5",
+  "sheet": "Figure2c",
+  "worksheet_xml": "xl/worksheets/sheet3.xml",
+  "selection": "E2:E11 == DREAMwalk",
+  "model_name_cells": [
+    "E2",
+    "E3",
+    "E4",
+    "E5",
+    "E6",
+    "E7",
+    "E8",
+    "E9",
+    "E10",
+    "E11"
+  ],
+  "seed_cells": [
+    "A2",
+    "A3",
+    "A4",
+    "A5",
+    "A6",
+    "A7",
+    "A8",
+    "A9",
+    "A10",
+    "A11"
+  ],
+  "seeds": [
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1,
+    0
+  ],
+  "n": 10,
+  "metrics": {
+    "accuracy": {
+      "source_column": "test_accuracy",
+      "cells": [
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6",
+        "B7",
+        "B8",
+        "B9",
+        "B10",
+        "B11"
+      ],
+      "values": [
+        0.828767123287671,
+        0.852739726027397,
+        0.85958904109589,
+        0.845890410958904,
+        0.85958904109589,
+        0.883561643835616,
+        0.842465753424658,
+        0.856164383561644,
+        0.832191780821918,
+        0.85958904109589
+      ],
+      "mean": 0.8520547945205478,
+      "n": 10,
+      "aggregation": "arithmetic mean of the ten source-data records"
+    },
+    "auroc": {
+      "source_column": "test_auroc",
+      "cells": [
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "C9",
+        "C10",
+        "C11"
+      ],
+      "values": [
+        0.912225558266091,
+        0.911897166447739,
+        0.902467629949334,
+        0.924047663726778,
+        0.923766185025333,
+        0.93633890035654,
+        0.917902045411897,
+        0.927613060611747,
+        0.89022330643648,
+        0.93427472321261
+      ],
+      "mean": 0.9180756239444549,
+      "n": 10,
+      "aggregation": "arithmetic mean of the ten source-data records"
+    },
+    "aupr": {
+      "source_column": "test_auprc",
+      "cells": [
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D6",
+        "D7",
+        "D8",
+        "D9",
+        "D10",
+        "D11"
+      ],
+      "values": [
+        0.921479509888787,
+        0.902455645362206,
+        0.890944616246029,
+        0.923616229791155,
+        0.933442467664676,
+        0.933355032215548,
+        0.906895809132906,
+        0.938836200607319,
+        0.888249104783294,
+        0.920543787579162
+      ],
+      "mean": 0.9159818403271082,
+      "n": 10,
+      "aggregation": "arithmetic mean of the ten source-data records"
+    }
+  },
+  "comparison_limit": "Source rows report ten author experiments; the local notebook runs one saved negative set with ten folds. Four raw Hetionet CtD positives lack molecular endpoints in the public reconstructed graph. Ontology snapshots are reconstructed, not asserted identical to the authors."
+}

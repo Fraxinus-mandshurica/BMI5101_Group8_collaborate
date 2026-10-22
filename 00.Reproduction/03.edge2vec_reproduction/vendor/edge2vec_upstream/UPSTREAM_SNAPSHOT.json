@@ -1,0 +1,22 @@
+{
+  "repository": "https://github.com/RoyZhengGao/edge2vec",
+  "commit": "b9250bd17112d203c2a5b496b75b4b6b259da9ed",
+  "files_sha256": {
+    "vector.txt": "373c91b5502aa6a7f2faa2e5dce2dc080e664a8910d0d58c4a643192ce270a05",
+    "LICENSE": "7317a7d7159cd2cd3866bb9c98681445ffd173799a15f06fb5d32cecdad237ea",
+    "matrix.txt": "4aea3e7d3038bf58dd86b0ce898fffa9e17e3cc2c9e840e9aedaf797da4bfc15",
+    "data.zip": "90a2cf7ca49f1d35cfa8ee0641cc42c8421f79cbcb203efb1b9db23c5881e397",
+    "transition.py": "93229b4b841373d3817eaa4f286e8aecaeab6cc4ecbe7a261ee15fdcaf7e976e",
+    "data.csv": "25828fc5857ff4ab9f9b480fb49034eb603a3cb0a1da930a99d5e9434f5ef7b2",
+    "README.md": "4685d8ee9bb947deb076a8c6db56f219137cd44b2e32dab492e29dcadbc26105",
+    "setup.py": "612086456d1b6dd22c8d04f61392a18f571e631e61bcc49bf96c79a3a77e06fc",
+    ".gitignore": "e2eb93a61ffd7877ea5c751abcb3a618e8e2e9a2073a27f66d4114fe10819f86",
+    "edge2vec.py": "86ef5a3afa8bb3228cf629e7f252e35634dec967f1a2ad4cc1f76ce26a0155f7",
+    "weighted_graph.txt": "31b42d6bb15491bf59074fa0adaf3d0a7ffafd0d17f7430cb0f47cec8e5026af",
+    "init.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "unweighted_graph.txt": "e46ad1414decd5e21550bf03cc45fa1aa4650938f7bbc2fd19f716591474240e",
+    "evaluation/multi_class_classification.py": "117516381b6fc7ade8248b89a7f5019591d4d56cffa267fe67664a84a58b9939",
+    "evaluation/link_prediction.py": "9e4b17e5df61a1862fc9f601707a5c3bd567c4ccb35d0bff9590b31d47f924e0",
+    "evaluation/init.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

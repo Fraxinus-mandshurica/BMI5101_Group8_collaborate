@@ -1,0 +1,13 @@
+{
+  "source": "../../00.DREAMwalk_reproduction/data/source_data.xlsx",
+  "sha256": "3934843a02dd862c04db41aab8832951f861466c1fdfde669d7d0cdcf31d5ec5",
+  "sheet": "Figure2a",
+  "filter": "model_name == SEAL",
+  "rows": 10,
+  "cells": "A32:E41",
+  "source_url": "https://www.nature.com/articles/s41467-023-39301-y",
+  "supplement": "../../00.DREAMwalk_reproduction/data/supplement.pdf",
+  "supplement_sha256": "8bc8974ede12f865ac3ed2ca17d2dfd911dc76065ea2272d2ae8466bfbbead7d",
+  "method_location": "Supplementary Method 1, printed page3 (PDF page4)",
+  "note": "Reference extraction only; no model run."
+}

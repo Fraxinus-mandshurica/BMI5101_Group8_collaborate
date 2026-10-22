@@ -1,0 +1,4 @@
+metric,mean,SD,n,source
+accuracy,0.8770982707718262,0.00483834007581596,10,Figure2a Source Data DREAMwalk rows
+auroc,0.9440604521100605,0.004066168745035256,10,Figure2a Source Data DREAMwalk rows
+aupr,0.9467667350869347,0.0042579667759176515,10,Figure2a Source Data DREAMwalk rows

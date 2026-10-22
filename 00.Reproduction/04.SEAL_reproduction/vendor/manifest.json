@@ -1,0 +1,72 @@
+[
+  {
+    "repo": "muhanzhang/SEAL",
+    "commit": "ca1f019a15fb0c21796042165b4e6bee73981dd3",
+    "path": "vendor/SEAL_upstream/README.md",
+    "url": "https://raw.githubusercontent.com/muhanzhang/SEAL/ca1f019a15fb0c21796042165b4e6bee73981dd3/README.md",
+    "sha256": "4eb9fbc30aa1c8bdead96a2cbe33d108e2aa94764c87ae2fdcf6ec24562aeab6"
+  },
+  {
+    "repo": "muhanzhang/SEAL",
+    "commit": "ca1f019a15fb0c21796042165b4e6bee73981dd3",
+    "path": "vendor/SEAL_upstream/Python/Main.py",
+    "url": "https://raw.githubusercontent.com/muhanzhang/SEAL/ca1f019a15fb0c21796042165b4e6bee73981dd3/Python/Main.py",
+    "sha256": "d920489a6e9c960397edcc3fbc4d3653b7645822ac56986c28cec09a31bfd879"
+  },
+  {
+    "repo": "muhanzhang/SEAL",
+    "commit": "ca1f019a15fb0c21796042165b4e6bee73981dd3",
+    "path": "vendor/SEAL_upstream/Python/util_functions.py",
+    "url": "https://raw.githubusercontent.com/muhanzhang/SEAL/ca1f019a15fb0c21796042165b4e6bee73981dd3/Python/util_functions.py",
+    "sha256": "00342975529368499d2dd1a0c8d3fee4400b6eee02d5295787592ce72b7c647c"
+  },
+  {
+    "repo": "muhanzhang/pytorch_DGCNN",
+    "commit": "50f504131ca66382f3f078ae98e59aa3ae35b795",
+    "path": "vendor/pytorch_DGCNN_upstream/README.md",
+    "url": "https://raw.githubusercontent.com/muhanzhang/pytorch_DGCNN/50f504131ca66382f3f078ae98e59aa3ae35b795/README.md",
+    "sha256": "eaac0f747e0a942cb596930ef5c2e9b28e5afc34c180c160ebf784faff9dd221"
+  },
+  {
+    "repo": "muhanzhang/pytorch_DGCNN",
+    "commit": "50f504131ca66382f3f078ae98e59aa3ae35b795",
+    "path": "vendor/pytorch_DGCNN_upstream/main.py",
+    "url": "https://raw.githubusercontent.com/muhanzhang/pytorch_DGCNN/50f504131ca66382f3f078ae98e59aa3ae35b795/main.py",
+    "sha256": "232574e44dc4b525714f1e7f18c883c6fcfae9e5d01aeefcd6968074e901731e"
+  },
+  {
+    "repo": "muhanzhang/pytorch_DGCNN",
+    "commit": "50f504131ca66382f3f078ae98e59aa3ae35b795",
+    "path": "vendor/pytorch_DGCNN_upstream/DGCNN_embedding.py",
+    "url": "https://raw.githubusercontent.com/muhanzhang/pytorch_DGCNN/50f504131ca66382f3f078ae98e59aa3ae35b795/DGCNN_embedding.py",
+    "sha256": "c2faaeffc3c6f16fa3cd15dd711c10706d5eb9f1a51df8eb0d78d654b887a510"
+  },
+  {
+    "repo": "muhanzhang/pytorch_DGCNN",
+    "commit": "50f504131ca66382f3f078ae98e59aa3ae35b795",
+    "path": "vendor/pytorch_DGCNN_upstream/mlp_dropout.py",
+    "url": "https://raw.githubusercontent.com/muhanzhang/pytorch_DGCNN/50f504131ca66382f3f078ae98e59aa3ae35b795/mlp_dropout.py",
+    "sha256": "31c7d95412c00f10ef87693827c6081fa4035826be46e1fb09e5938234e27ff7"
+  },
+  {
+    "repo": "muhanzhang/pytorch_DGCNN",
+    "commit": "50f504131ca66382f3f078ae98e59aa3ae35b795",
+    "path": "vendor/pytorch_DGCNN_upstream/util.py",
+    "url": "https://raw.githubusercontent.com/muhanzhang/pytorch_DGCNN/50f504131ca66382f3f078ae98e59aa3ae35b795/util.py",
+    "sha256": "9ef01fafb4e57c947aa936ea95c186d694c71adf9d232ba62f9b02455a997a5a"
+  },
+  {
+    "repo": "muhanzhang/pytorch_DGCNN",
+    "commit": "50f504131ca66382f3f078ae98e59aa3ae35b795",
+    "path": "vendor/pytorch_DGCNN_upstream/lib/pytorch_util.py",
+    "url": "https://raw.githubusercontent.com/muhanzhang/pytorch_DGCNN/50f504131ca66382f3f078ae98e59aa3ae35b795/lib/pytorch_util.py",
+    "sha256": "5ce0939de8b439e6fe6fbbeceff3fc0905278dc92b12d7d21ab524b451bbec1d"
+  },
+  {
+    "repo": "muhanzhang/pytorch_DGCNN",
+    "commit": "50f504131ca66382f3f078ae98e59aa3ae35b795",
+    "path": "vendor/pytorch_DGCNN_upstream/LICENSE",
+    "url": "https://raw.githubusercontent.com/muhanzhang/pytorch_DGCNN/50f504131ca66382f3f078ae98e59aa3ae35b795/LICENSE",
+    "sha256": "ea7f7ca6a79d92d8ff75cb72c1e6f32d731d4857f9c5059890fd88a4bf12f875"
+  }
+]

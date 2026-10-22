@@ -1,0 +1,13 @@
+{
+  "source": "../../00.DREAMwalk_reproduction/data/source_data.xlsx",
+  "sha256": "3934843a02dd862c04db41aab8832951f861466c1fdfde669d7d0cdcf31d5ec5",
+  "sheet": "Figure2a",
+  "filter": "model_name case-insensitive == edge2vec",
+  "rows": 10,
+  "SD_ddof": 1,
+  "source_url": "https://www.nature.com/articles/s41467-023-39301-y",
+  "supplement_url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-023-39301-y/MediaObjects/41467_2023_39301_MOESM1_ESM.pdf",
+  "upstream_url": "https://github.com/RoyZhengGao/edge2vec",
+  "upstream_commit": "b9250bd17112d203c2a5b496b75b4b6b259da9ed",
+  "note": "Reference extraction only; no MSI preparation or model was run."
+}

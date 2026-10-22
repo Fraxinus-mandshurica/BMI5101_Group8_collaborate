@@ -1,0 +1,140 @@
+{
+  "source": "Author-provided DREAMwalk Source Data workbook; values are not estimated from the figure",
+  "paper": "Bang et al. (2023), Nature Communications, DOI 10.1038/s41467-023-39301-y",
+  "external_url": "https://pmc.ncbi.nlm.nih.gov/articles/instance/10272215/bin/41467_2023_39301_MOESM4_ESM.xlsx",
+  "workbook_path": "data/source_data.xlsx",
+  "workbook_sha256": "3934843a02dd862c04db41aab8832951f861466c1fdfde669d7d0cdcf31d5ec5",
+  "sheet": "Figure2d",
+  "worksheet_xml": "xl/worksheets/sheet4.xml",
+  "selection": "model_name == DREAMwalk",
+  "model_name_cells": [
+    "E2",
+    "E3",
+    "E4",
+    "E5",
+    "E6",
+    "E7",
+    "E8",
+    "E9",
+    "E10",
+    "E11"
+  ],
+  "seed_cells": [
+    "A2",
+    "A3",
+    "A4",
+    "A5",
+    "A6",
+    "A7",
+    "A8",
+    "A9",
+    "A10",
+    "A11"
+  ],
+  "seeds": [
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    0,
+    1
+  ],
+  "n": 10,
+  "metrics": {
+    "accuracy": {
+      "source_column": "test_accuracy",
+      "cells": [
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6",
+        "B7",
+        "B8",
+        "B9",
+        "B10",
+        "B11"
+      ],
+      "values": [
+        0.891089108910891,
+        0.888888888888889,
+        0.886688668866887,
+        0.894389438943894,
+        0.873487348734873,
+        0.893289328932893,
+        0.881188118811881,
+        0.892189218921892,
+        0.906490649064906,
+        0.878987898789879
+      ],
+      "mean": 0.8886688668866884,
+      "n": 10,
+      "aggregation": "arithmetic mean of the ten author Source Data records"
+    },
+    "auroc": {
+      "source_column": "test_auroc",
+      "cells": [
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "C9",
+        "C10",
+        "C11"
+      ],
+      "values": [
+        0.961838601926708,
+        0.950505881783415,
+        0.955869680979813,
+        0.947896596795275,
+        0.943176647141405,
+        0.94545190492327,
+        0.950801181197657,
+        0.961412596214358,
+        0.963920220748414,
+        0.946855787384422
+      ],
+      "mean": 0.9527729099094737,
+      "n": 10,
+      "aggregation": "arithmetic mean of the ten author Source Data records"
+    },
+    "aupr": {
+      "source_column": "test_auprc",
+      "cells": [
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D6",
+        "D7",
+        "D8",
+        "D9",
+        "D10",
+        "D11"
+      ],
+      "values": [
+        0.963811132770539,
+        0.950245390125056,
+        0.961987802444501,
+        0.942605982059696,
+        0.945545598082166,
+        0.951304097181577,
+        0.956583971781033,
+        0.96229469996246,
+        0.963716290884158,
+        0.947214595304764
+      ],
+      "mean": 0.954530956059595,
+      "n": 10,
+      "aggregation": "arithmetic mean of the ten author Source Data records"
+    }
+  },
+  "comparison_limit": "The paper reports ten author experiments. A newly retrieved public KEGG REST snapshot is not claimed identical to the authors historical processed graph or semantic mapping."
+}

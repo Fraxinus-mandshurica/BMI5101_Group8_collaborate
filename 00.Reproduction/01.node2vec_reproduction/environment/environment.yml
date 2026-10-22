@@ -1,0 +1,10 @@
+name: msi-node2vec
+channels:
+  - conda-forge
+dependencies:
+  - python=3.8
+  - numpy=1.23.3
+  - scipy=1.9.1
+  - scikit-learn=1.1.3
+  - gensim=4.3.2
+  - smart_open=6.4.0

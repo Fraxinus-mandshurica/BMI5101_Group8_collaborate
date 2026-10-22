@@ -1,0 +1,9 @@
+{
+  "source": "../../00.DREAMwalk_reproduction/data/source_data.xlsx",
+  "sha256": "3934843a02dd862c04db41aab8832951f861466c1fdfde669d7d0cdcf31d5ec5",
+  "sheet": "Figure2a",
+  "filter": "model_name == node2vec",
+  "rows": 10,
+  "source_url": "https://www.nature.com/articles/s41467-023-39301-y",
+  "note": "Reference extraction only; no model was run."
+}
