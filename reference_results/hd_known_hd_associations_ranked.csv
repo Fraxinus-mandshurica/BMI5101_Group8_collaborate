@@ -1,0 +1,6 @@
+drug,drug_name,disease,disease_name,mean_score,sd_score,n_negative_sets,known_in_msi,training_negative_count,training_negative_fraction,rank_all,candidate_rank
+DB00181,baclofen,C0020179,Huntington disease,0.9330118536949158,0.023813510139324846,10,True,0,0.0,1,
+DB01100,pimozide,C0020179,Huntington disease,0.9151647210121154,0.02729408455862908,10,True,0,0.0,2,
+DB00850,perphenazine,C0020179,Huntington disease,0.908645623922348,0.025455703928179748,10,True,0,0.0,3,
+DB04844,tetrabenazine,C0020179,Huntington disease,0.8418133556842804,0.06012226986852751,10,True,0,0.0,18,
+DB09270,coenzyme Q10,C0020179,Huntington disease,0.8025080621242523,0.03393516656545599,10,True,0,0.0,51,

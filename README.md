@@ -4,43 +4,45 @@ Code for the BMI5101 Group 8 reproduction of the [DREAMwalk paper by Bang et al.
 
 This repository contains DREAMwalk experiments on **MSI, Hetionet and KEGG**, MSI baseline reconstructions, controlled analyses of walk generation and Skip-gram training, and a **Huntington disease (HD) drug-ranking case study**. It preserves the original implementation alongside explicitly labeled diagnostic variants.
 
-**Main finding:** Hetionet reaches comparable performance, KEGG scores higher on a different reconstructed snapshot, and MSI remains below the paper. MSI node2vec, edge2vec and SEAL comparisons support the shared molecular inputs and evaluation. A combined DREAMwalk variant reaches MSI AUROC **0.916308**, compared with **0.882394** for the original algorithm on the revised MeSH2024 input and **0.944060** in the paper. These observations support partial reproduction; they do not establish the cause of every remaining difference.
+**Main finding:** Hetionet reaches comparable performance, while KEGG scores higher on a different reconstructed snapshot. MSI remains below the paper. With fixed seed-0 embeddings and ten repeats of ten-fold CV, the original variant achieves AUROC **0.883577** and the combined modified variant **0.914619**, versus **0.944060** in the paper. The paired gain is **0.031042** (95% CI **0.029839 to 0.032244**). The modified variant remains **0.029442** below the paper. MSI baseline comparisons and completed policy controls provide context for this partial reproduction.
 
 ## 1. Repository contents
 
 ```text
 00.Reproduction/
 ├── 00.DREAMwalk_reproduction/
-│   ├── notebooks/       # MSI controls, Hetionet and KEGG entry points
+│   ├── notebooks/       # MSI controls, repeated CV, disease-area splits, Hetionet and KEGG
 │   ├── src/             # Preparation, audits, runners and diagnostic variants
 │   ├── tests/           # Synthetic protocol, patch and routing checks
 │   ├── environment/     # Python 3.8 environment specification
 │   ├── colab/           # Separate Linux notebook and bundle-building code
-│   ├── references/      # Extracted Hetionet/KEGG paper references
+│   ├── references/      # Extracted MSI/Hetionet/KEGG paper references
 │   └── vendor/          # Unmodified pinned DREAMwalk source
 ├── 01.node2vec_reproduction/
 ├── 02.DTi2vec_reproduction/
 ├── 03.edge2vec_reproduction/
 └── 04.SEAL_reproduction/
 01.case_study/
-└── 01.HD/               # HD prediction notebook, helpers and synthetic tests
+└── 01.HD/               # HD notebook, helpers, tests and English literature report
 reference_results/       # Historical metrics and HD ranking snapshots; not checkpoints
 README.md
 ```
 
 Each model directory contains its notebook, source and environment specification. Baseline directories also contain extracted paper-reference tables. Third-party source and license files are retained where applicable.
 
-This is a **code release**. Local raw datasets, licensed UMLS files, processed research inputs, walk corpora, trained models, installed environments, logs and historical checkpoint configurations are not included. Notebook outputs/execution counts are cleared. Working journals and duplicate notebook archives are omitted. No `.gitignore` files are tracked.
+This is a **code release**. Local raw datasets, licensed UMLS files, processed research inputs, walk corpora, trained models, installed environments, logs and historical checkpoint configurations are not included. Completed notebook outputs and execution counts are retained; Chinese display text is translated to English. Numerical tables and saved plots preserve the local results. Working journals and duplicate notebook archives are omitted. No `.gitignore` files are tracked.
 
 `reference_results/historical_metrics.csv` preserves 23 completed local result summaries, with their original relative paths and source-file SHA-256 values. These are historical observations, not runs executed during publication. They live outside active `results/` paths so that they cannot be mistaken for resumable checkpoints.
 
-The completed HD top-ten ranking, negative-set counts and original run configuration are also included as reference snapshots. Trained classifiers, full working results and duplicate notebook archives remain local.
+Completed 10 x 10 CV summaries, both disease-area split attempts, and HD rankings are included under `reference_results/`. `supplemental_results_provenance.json` records the original source paths and digests. The original HD run configuration remains a reference snapshot. Trained classifiers, full working results and duplicate notebook archives remain local.
 
 ## 2. Notebook entry points
 
 | Task | Notebook |
 |---|---|
 | MSI DREAMwalk baseline and controls | [MSI_DREAMwalk_local.ipynb](00.Reproduction/00.DREAMwalk_reproduction/notebooks/MSI_DREAMwalk_local.ipynb) |
+| MSI Figure 2a: ten repeats of ten-fold CV | [MSI_DREAMwalk_10x10_CV.ipynb](00.Reproduction/00.DREAMwalk_reproduction/notebooks/MSI_DREAMwalk_10x10_CV.ipynb) |
+| MSI Figure 2b: strict and primary-category disease-area splits | [MSI_DREAMwalk_disease_area_split.ipynb](00.Reproduction/00.DREAMwalk_reproduction/notebooks/MSI_DREAMwalk_disease_area_split.ipynb) |
 | Original DREAMwalk on Hetionet | [Hetionet_DREAMwalk_local.ipynb](00.Reproduction/00.DREAMwalk_reproduction/notebooks/Hetionet_DREAMwalk_local.ipynb) |
 | Original DREAMwalk on KEGG | [KEGG_DREAMwalk_local.ipynb](00.Reproduction/00.DREAMwalk_reproduction/notebooks/KEGG_DREAMwalk_local.ipynb) |
 | MSI node2vec | [MSI_node2vec_seed0_local.ipynb](00.Reproduction/01.node2vec_reproduction/notebooks/MSI_node2vec_seed0_local.ipynb) |
@@ -154,14 +156,14 @@ Default DREAMwalk settings are fixed: **τ=0.3**, similarity cutoff **0.4**, **1
 
 Length 10 follows the supplement/released code despite the main Methods mentioning length 4. τ=0.3 follows the demo and accepted local configuration; it is not presented as an explicitly specified Figure 2a optimum.
 
-XGBoost uses 500 trees, depth 6, learning rate 0.1, gamma 0, min_child_weight 4, subsample 0.8, colsample_bytree 0.9, scale_pos_weight 1, max_delta_step 1, seed 0 and four jobs. Features are **drug embedding − disease embedding**. Treatment labels do not enter the DREAMwalk molecular embedding graph.
+XGBoost uses 500 trees, depth 6, learning rate 0.1, gamma 0, min_child_weight 4, subsample 0.8, colsample_bytree 0.9, scale_pos_weight 1, max_delta_step 1 and four jobs. Historical controls and the HD case study use classifier seed 0. In the new 10 x 10 CV, the classifier seed equals the repeat seed (0-9), shared by Original and Modified. Features are **drug embedding − disease embedding**. Treatment labels do not enter the DREAMwalk molecular embedding graph.
 
 Two different mechanisms are called negative sampling:
 
-1. **Link-level negatives:** unlabeled drug–disease pairs used as classifier labels. MSI uses the same locally generated and saved 5,926 seed-0 negatives across controls. The authors' exact negative-pair IDs are unavailable.
+1. **Link-level negatives:** unlabeled drug–disease pairs used as classifier labels. Historical MSI controls share the locally generated 5,926 seed-0 negatives. The repeated-CV notebook uses ten disjoint sets, preserving the canonical seed-0 IDs and order. The authors' exact negative-pair IDs are unavailable.
 2. **Skip-gram negatives:** noise output nodes used to train embeddings from walk-window context pairs. The original C++ `pp=1` chooses a pool by **input-node type**; `pp=0` uses a global pool. These are not classifier-negative pairs.
 
-Most local results are **one seed × ten stratified folds**, with fixed pair order and seed 0. Folds are saved or deterministically regenerated and checked. The paper reports **ten repeats of ten-fold evaluation**; between-fold SD is not between-repeat SD. Accuracy uses rounded probabilities, AUROC uses probabilities, and AUPR is `average_precision_score`.
+Historical local controls are **one seed x ten stratified folds**, with fixed pair order and seed 0. The new Figure 2a notebook uses ten repeat seeds x ten folds; the two existing embeddings remain fixed. Folds are saved or deterministically regenerated and checked. The paper reports **ten repeats of ten-fold evaluation**; between-fold SD is not between-repeat SD. Accuracy uses rounded probabilities, AUROC uses probabilities, and AUPR is `average_precision_score`.
 
 No extra startup hash seed is set in ordinary runs. Upstream `set_seed(0)` is retained. Spawn-worker RNG states and multithreaded Skip-gram are not assumed to be bitwise deterministic.
 
@@ -169,14 +171,14 @@ No extra startup hash seed is set in ordinary runs. Upstream `set_seed(0)` is re
 
 | Dataset / result | Accuracy | AUROC | AUPR |
 |---|---:|---:|---:|
-| MSI, original algorithm, MeSH2024 with letter roots | 0.802736 | 0.882394 | 0.889991 |
+| MSI, original algorithm, MeSH2024 with letter roots, seed 0 | 0.802736 | 0.882394 | 0.889991 |
 | MSI, paper Figure 2a | 0.877098 | 0.944060 | 0.946767 |
 | Hetionet, original algorithm | 0.849506 | 0.926881 | 0.921867 |
 | Hetionet, paper Figure 2c | 0.852055 | 0.918076 | 0.915982 |
 | KEGG, original algorithm, current snapshot | 0.933456 | 0.978860 | 0.978776 |
 | KEGG, paper Figure 2d | 0.888669 | 0.952773 | 0.954531 |
 
-MSI's first historical macOS seed-0 ten-fold run achieved AUROC **0.884284**. The later shared-corpus runs are separate stochastic executions and should not be treated as identical embeddings. Hetionet agreement supports a functioning original pipeline. KEGG is in the same broad performance range or higher, with substantial input-version/cohort differences. Neither result proves that every MSI-specific input choice matches the authors' benchmark.
+The local rows in this table are historical seed-0 ten-fold results; Section 7.1a reports the later MSI ten-repeat evaluation. MSI's first historical macOS seed-0 ten-fold run achieved AUROC **0.884284**. The later shared-corpus runs are separate stochastic executions and should not be treated as identical embeddings. Hetionet agreement supports a functioning original pipeline. KEGG is in the same broad performance range or higher, with substantial input-version/cohort differences. Neither result proves that every MSI-specific input choice matches the authors' benchmark.
 
 ## 6. MSI baseline comparisons
 
@@ -224,6 +226,36 @@ All rows below use the same MSI link-level seed-0 negatives and ten-fold evaluat
 
 The paper's **without-teleport** reference is AUROC **0.904701**, AUPR **0.911893** (`Figure4b` Source Data means). Its **SG** reference is AUROC **0.938501**, AUPR **0.941674** (`SupplementaryFigure5` means). These are extracted workbook values, not estimates from plots.
 
+### 7.1a Completed MSI repeated evaluation
+
+[MSI_DREAMwalk_10x10_CV.ipynb](00.Reproduction/00.DREAMwalk_reproduction/notebooks/MSI_DREAMwalk_10x10_CV.ipynb) retains the full cohort of 1,661 drugs, 840 diseases and 5,926 positive pairs. Each repeat adds 5,926 negatives. The ten negative sets are disjoint, and Original/Modified share their ordered pairs and stratified folds. The canonical seed-0 results are imported after identity checks; 90 additional classifiers per variant completed seeds 1-9.
+
+| Variant | Accuracy | AUROC | AUPR |
+|---|---:|---:|---:|
+| Original, ten-repeat mean | 0.801966 | 0.883577 | 0.892289 |
+| Modified, ten-repeat mean | 0.834188 | 0.914619 | 0.919762 |
+| Paper Figure 2a | 0.877098 | 0.944060 | 0.946767 |
+
+Modified has a higher AUROC in all ten repeats. The mean paired AUROC gain is **0.031042**, with a Student-t 95% CI of **0.029839 to 0.032244**. Metrics are first averaged over ten folds within each repeat. SD and CI are then calculated from the ten repeat means, not from 100 independent folds. These intervals measure evaluation variation conditional on the two fixed seed-0 embeddings; they do not include embedding retraining.
+
+Full-precision results: [summary](reference_results/msi_10x10_cv/summary.csv), [repeat means](reference_results/msi_10x10_cv/repeat_summary.csv), [fold results](reference_results/msi_10x10_cv/fold_results.csv), [paired gains](reference_results/msi_10x10_cv/paired_repeat_deltas.csv), [paired CI](reference_results/msi_10x10_cv/paired_delta_summary.csv), and [paper comparison](reference_results/msi_10x10_cv/paper_comparison.csv).
+
+### 7.1b Disease-area split attempts (Figure 2b)
+
+[MSI_DREAMwalk_disease_area_split.ipynb](00.Reproduction/00.DREAMwalk_reproduction/notebooks/MSI_DREAMwalk_disease_area_split.ipynb) includes both completed attempts. Each uses the same fixed Original/Modified embeddings and ten shared category splits. Of 840 diseases, 748 have accepted MeSH categories, retaining 5,596 positives. The other 92 diseases and their 330 positive labels are excluded from this evaluation, while their graph nodes remain unchanged. Categories are split 24/3/3 for training/validation/test. Global negatives are balanced 1:1 with positives before partitioning; the ten sets are disjoint.
+
+- **Strict all-membership:** if any category of a disease is assigned to test, all its labels enter test; otherwise validation takes priority over training.
+- **Fixed primary category:** select one accepted category per disease once, with assignment seed 0. Allocate labels by that category in every repeat. Diseases never span partitions, but their secondary categories can overlap across partitions.
+
+| Split policy | Original test AUROC | Modified test AUROC | Paper Figure 2b AUROC |
+|---|---:|---:|---:|
+| Strict all-membership | 0.671951 | 0.711832 | 0.820409 |
+| Fixed primary category | 0.702606 | 0.738424 | 0.820409 |
+
+The modified variant improves both local comparisons, but neither split attempt matches the paper. These are documented category-assignment reconstructions, not recovered author splits. They remain separate from Figure 2a random-pair CV. The paper calls the disease-area experiment **Figure 2b**; **Figure 2d** refers to KEGG in the published paper.
+
+Reference snapshots: [strict results](reference_results/msi_disease_area_strict/summary.csv), [primary-category results](reference_results/msi_disease_area_primary/summary.csv), [split-policy comparison](reference_results/msi_disease_area_primary/split_policy_comparison.csv), and [excluded disease list](reference_results/msi_disease_area_strict/excluded_diseases.csv).
+
 ### 7.2 Teleport policy
 
 The released cumulative-threshold selector can continue after a destination is selected, allowing a later neighbor to replace it. The diagnostic selector returns on the **first cumulative-weight hit**, while retaining candidate order, shuffle and random-draw conventions. It is installed and audited inside multiprocessing workers, including under macOS spawn.
@@ -244,7 +276,7 @@ Implementation: `run_ns_output_type_control.py` and `run_ns_positive_filter_cont
 
 ### 7.4 Combined variant and hierarchy review
 
-The final `msi_seed0_mesh2024_final_fixed` run combines first-hit teleportation, output-type NS and current-positive rejection with the MeSH2024 hierarchy containing letter-category roots. It achieves **Accuracy 0.835220, AUROC 0.916308, AUPR 0.922352**. The AUROC gap from the paper remains approximately **0.02775**.
+The historical seed-0 `msi_seed0_mesh2024_final_fixed` run combines first-hit teleportation, output-type NS and current-positive rejection with the MeSH2024 hierarchy containing letter-category roots. It achieves **Accuracy 0.835220, AUROC 0.916308, AUPR 0.922352**. Its seed-0 AUROC gap from the paper is approximately **0.02775**. The later fixed-embedding 10 x 10 CV mean is **0.914619**, with a gap of **0.029442**; see Section 7.1a.
 
 Hierarchy review checked exact source paths and multiple Descriptor positions. Adding the letter-category layer changed semantic ancestry and 192 retained disease-similarity edges; it did not change the molecular graph. Sections 7–8 now share the revised hierarchy with Section 12, while old experiments keep their historical inputs. τ=0 controls do not traverse semantic edges, so MeSH differences alone cannot explain their remaining gap.
 
@@ -273,7 +305,7 @@ Random teleportation was discussed as a possible control but has **no completed 
 
 ## 9. Interpreting the remaining discrepancy
 
-The investigation has not identified a single complete explanation for MSI. Plausible limits include unavailable original benchmark snapshots/mappings, semantic coverage and version drift, unknown exact evaluation pair identities, a different averaging protocol, and stochastic training variation. The effects measured here do not establish that any one of these accounts for the residual gap.
+The investigation has not identified a single complete explanation for MSI. Plausible limits include unavailable original benchmark snapshots/mappings, semantic coverage and version drift, unknown exact evaluation pair identities, fixed-embedding versus embedding-retraining uncertainty, and stochastic training variation. The completed random-pair evaluation now uses ten repeats of ten-fold CV; matching that repeat count did not close the MSI gap. The effects measured here do not establish that any one of these accounts for the residual gap.
 
 Shared molecular inputs are supported by the baseline results. Hetionet agreement supports the original pipeline's overall operation. At the same time, MSI no-teleport performance also remains below the paper, so **semantic mapping cannot be the sole explanation**. Locally sampled negative sets and the macOS/Linux comparison showed small changes in the tests performed.
 
@@ -283,7 +315,7 @@ The remaining discrepancy is documented as **partial reproduction with unresolve
 
 ## 10. Verification and upstream provenance
 
-Publication changes translate notebook narratives and display/error strings, clear outputs and consolidate documentation. Model parameters and algorithmic code are retained. Test fixtures for positive-output filtering now generate their prerequisite source from the pinned original instead of requiring a completed MSI experiment. SEAL's optional upstream-forward comparison needs the small test dependency in `environment/requirements-test.txt`.
+Publication changes translate notebook narratives and display/error strings, preserve completed outputs and consolidate documentation. The newly added helpers and tests implement the already completed repeated-CV and category-split evaluations. Model parameters and algorithmic code are retained. Test fixtures for positive-output filtering now generate their prerequisite source from the pinned original instead of requiring a completed MSI experiment. SEAL's optional upstream-forward comparison needs the small test dependency in `environment/requirements-test.txt`.
 
 Example test commands, run from the corresponding model directory:
 
@@ -372,4 +404,12 @@ The original local run completed sampling, all ten classifiers/predictions and a
 
 Names retain the MSI source spelling. Every listed top-ten pair has `training_negative_count=0`. “Candidate” means absent from the current MSI HD positive labels, not previously unstudied in HD. Scores are uncalibrated ranking outputs, not clinical probabilities or evidence of efficacy; known HD positives were included in training and their scores cannot serve as a held-out validation.
 
-The original single-classifier HD-label-holdout workflow remains a historical comparison in the working project. Its rankings must not be mixed with the current ten-set results. This release retains its low-level helper functions/tests but excludes duplicate notebook archives and historical trained artifacts. Literature assessment and biological interpretation remain separate work; this publication adds no new clinical-efficacy claims.
+The original single-classifier HD-label-holdout workflow remains a historical comparison in the working project. Its rankings must not be mixed with the current ten-set results. This release retains its low-level helper functions/tests but excludes duplicate notebook archives and historical trained artifacts. The [English literature assessment](01.case_study/01.HD/literature_review/HD_top10_drug_case_study.md) and [PDF report](01.case_study/01.HD/literature_review/HD_top10_drug_case_study.pdf) discuss each of the ten candidates, with a [reference inventory](01.case_study/01.HD/literature_review/HD_top10_reference_inventory.csv). They explain why HD was selected and distinguish candidate ranking, external evidence and in-sample known-pair scores.
+
+### 11.4 Why HD, and how to discuss its scores
+
+HD matches the rare-neurodegenerative-disease project focus, is already represented in MSI, and has treatment literature available for critical candidate assessment. The current workflow uses its five known positive labels in classifier training; HD was not held out.
+
+The [known-pair score table](reference_results/hd_known_hd_associations_ranked.csv) is descriptive. High scores for these training examples cannot establish recovery of unseen associations or clinical efficacy. The case-study Discussion instead assesses the unlabeled candidate ranking against published evidence. A future HD-label-holdout evaluation could remove all HD labels from classifier training, retain the existing graph representation and report ranks/Recall@K for the five withheld positives. No new holdout experiment was run for this update.
+
+The [complete drug ranking](reference_results/hd_all_drugs_ranked.csv) and [top-20 candidate table](reference_results/hd_top20_candidates.csv) retain the current prediction snapshot.

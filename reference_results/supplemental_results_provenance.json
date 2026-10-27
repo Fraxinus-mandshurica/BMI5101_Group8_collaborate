@@ -1,0 +1,130 @@
+{
+  "purpose": "Completed historical output snapshots; not resumable checkpoints. No scientific runs were launched for this synchronization.",
+  "files": [
+    {
+      "file": "reference_results/msi_10x10_cv/fold_results.csv",
+      "source": "00.Reproduction/00.DREAMwalk_reproduction/results/msi_mesh2024_fixed_embeddings_10x10/fold_results.csv",
+      "sha256": "eb3395f39d94ebbd51c144b89165851a525ec0b5354c53fca44592b17407cc8c"
+    },
+    {
+      "file": "reference_results/msi_10x10_cv/fold_sizes.csv",
+      "source": "00.Reproduction/00.DREAMwalk_reproduction/results/msi_mesh2024_fixed_embeddings_10x10/fold_sizes.csv",
+      "sha256": "1dde177cc1ec34e3d9be2de1bd5693e941bcb7fbd3cb738c0ced274c21fcd5ed"
+    },
+    {
+      "file": "reference_results/msi_10x10_cv/repeat_summary.csv",
+      "source": "00.Reproduction/00.DREAMwalk_reproduction/results/msi_mesh2024_fixed_embeddings_10x10/repeat_summary.csv",
+      "sha256": "309a56f7df4ba8bc1ac204321a034db2570bd748f3be8075f777ae286b8c45e8"
+    },
+    {
+      "file": "reference_results/msi_10x10_cv/summary.csv",
+      "source": "00.Reproduction/00.DREAMwalk_reproduction/results/msi_mesh2024_fixed_embeddings_10x10/summary.csv",
+      "sha256": "74b14a61e35b0bf1b0b5b0b89aad69fdf0ba9c9a7a0c68b17415612b9cfbfadf"
+    },
+    {
+      "file": "reference_results/msi_10x10_cv/paired_repeat_deltas.csv",
+      "source": "00.Reproduction/00.DREAMwalk_reproduction/results/msi_mesh2024_fixed_embeddings_10x10/paired_repeat_deltas.csv",
+      "sha256": "b17a3f1114dd324f7002456f4e08550d4f06f5b787dc855bc66554df2fc2cd94"
+    },
+    {
+      "file": "reference_results/msi_10x10_cv/paired_delta_summary.csv",
+      "source": "00.Reproduction/00.DREAMwalk_reproduction/results/msi_mesh2024_fixed_embeddings_10x10/paired_delta_summary.csv",
+      "sha256": "44c23ce8ca6f156c1341da2914002aa8d37dbed0d63e8fc527633ceeb0aa948d"
+    },
+    {
+      "file": "reference_results/msi_10x10_cv/paper_comparison.csv",
+      "source": "00.Reproduction/00.DREAMwalk_reproduction/results/msi_mesh2024_fixed_embeddings_10x10/paper_comparison.csv",
+      "sha256": "72c4bdef7f59bb9f24c2242aa44e9ad2247163b9187d635ad10bff852c3701dc"
+    },
+    {
+      "file": "reference_results/msi_disease_area_strict/repeat_results.csv",
+      "source": "00.Reproduction/00.DREAMwalk_reproduction/results/msi_mesh2024_disease_area_seed0_9/repeat_results.csv",
+      "sha256": "fc852d3abd46470aed7a4bae5f973e7d96589f8f99f69c24a14318ea39d6a67d"
+    },
+    {
+      "file": "reference_results/msi_disease_area_strict/summary.csv",
+      "source": "00.Reproduction/00.DREAMwalk_reproduction/results/msi_mesh2024_disease_area_seed0_9/summary.csv",
+      "sha256": "c0363a6fd4261403bf02ac000a06a299b08e80e39d68fe68e1fe10d8ca81a1e9"
+    },
+    {
+      "file": "reference_results/msi_disease_area_strict/split_summary.csv",
+      "source": "00.Reproduction/00.DREAMwalk_reproduction/results/msi_mesh2024_disease_area_seed0_9/split_summary.csv",
+      "sha256": "ce1013be368413a3464a57451e2b369885a26fea5663be910ca03ff87648c888"
+    },
+    {
+      "file": "reference_results/msi_disease_area_strict/paired_test_deltas.csv",
+      "source": "00.Reproduction/00.DREAMwalk_reproduction/results/msi_mesh2024_disease_area_seed0_9/paired_test_deltas.csv",
+      "sha256": "65707b1110ff845326cf18b7343094d32be5f4a8bb57546b5903ef7316f18d67"
+    },
+    {
+      "file": "reference_results/msi_disease_area_strict/paired_test_delta_summary.csv",
+      "source": "00.Reproduction/00.DREAMwalk_reproduction/results/msi_mesh2024_disease_area_seed0_9/paired_test_delta_summary.csv",
+      "sha256": "d5938b00c4256eeb9868e41711ae3af65e178754dec4fe7705c0fea41737884d"
+    },
+    {
+      "file": "reference_results/msi_disease_area_strict/paper_comparison.csv",
+      "source": "00.Reproduction/00.DREAMwalk_reproduction/results/msi_mesh2024_disease_area_seed0_9/paper_comparison.csv",
+      "sha256": "8114253a7550850a41c767621858052900d18543d463d05ddc54658635ec757d"
+    },
+    {
+      "file": "reference_results/msi_disease_area_strict/excluded_diseases.csv",
+      "source": "00.Reproduction/00.DREAMwalk_reproduction/results/msi_mesh2024_disease_area_seed0_9/excluded_diseases.csv",
+      "sha256": "4da5d9df8630284e1ffe767a270c85c5ec37897b8a4a2457ac0da3c2f66bffcc"
+    },
+    {
+      "file": "reference_results/msi_disease_area_strict/excluded_positive_pairs.csv",
+      "source": "00.Reproduction/00.DREAMwalk_reproduction/results/msi_mesh2024_disease_area_seed0_9/excluded_positive_pairs.csv",
+      "sha256": "94a30c3d3d537f9f9c771e9b506b95d9d2b1decd93403cfa0f740a12e340ec73"
+    },
+    {
+      "file": "reference_results/msi_disease_area_primary/repeat_results.csv",
+      "source": "00.Reproduction/00.DREAMwalk_reproduction/results/msi_mesh2024_disease_area_primary_seed0_9/repeat_results.csv",
+      "sha256": "a45acfd91e6eaa53063daec00cd937205eff0b4a74b0a4880ac2d0b5b0286735"
+    },
+    {
+      "file": "reference_results/msi_disease_area_primary/summary.csv",
+      "source": "00.Reproduction/00.DREAMwalk_reproduction/results/msi_mesh2024_disease_area_primary_seed0_9/summary.csv",
+      "sha256": "be50ec564ed2786d8dbcda06f4ced4cb11d04ff1a41f0775a1a9997ff55a339a"
+    },
+    {
+      "file": "reference_results/msi_disease_area_primary/split_summary.csv",
+      "source": "00.Reproduction/00.DREAMwalk_reproduction/results/msi_mesh2024_disease_area_primary_seed0_9/split_summary.csv",
+      "sha256": "2c23af455e94c098b436d54d2fe0d0983ba788cef5f4a7fae02b738d23f28724"
+    },
+    {
+      "file": "reference_results/msi_disease_area_primary/paired_test_deltas.csv",
+      "source": "00.Reproduction/00.DREAMwalk_reproduction/results/msi_mesh2024_disease_area_primary_seed0_9/paired_test_deltas.csv",
+      "sha256": "09b85b7cb6c0ea6a5a70169ad81849f17724a4025383d01f1acb59d5af1ba177"
+    },
+    {
+      "file": "reference_results/msi_disease_area_primary/paired_test_delta_summary.csv",
+      "source": "00.Reproduction/00.DREAMwalk_reproduction/results/msi_mesh2024_disease_area_primary_seed0_9/paired_test_delta_summary.csv",
+      "sha256": "f9e021c949d2310bcf7ab0a6afce394239b2be198895fb381c29eb8d8f477bde"
+    },
+    {
+      "file": "reference_results/msi_disease_area_primary/paper_comparison.csv",
+      "source": "00.Reproduction/00.DREAMwalk_reproduction/results/msi_mesh2024_disease_area_primary_seed0_9/paper_comparison.csv",
+      "sha256": "bfc2d325f12e95924828a5978bad21015d6e7781377c90b5d63ad460a8a4ddc4"
+    },
+    {
+      "file": "reference_results/msi_disease_area_primary/split_policy_comparison.csv",
+      "source": "00.Reproduction/00.DREAMwalk_reproduction/results/msi_mesh2024_disease_area_primary_seed0_9/split_policy_comparison.csv",
+      "sha256": "21c490b0342780869ad44e50a175aea0cf6daea2e5f28cefd91cb614ec981431"
+    },
+    {
+      "file": "reference_results/hd_known_hd_associations_ranked.csv",
+      "source": "01.case_study/01.HD/results/hd_mesh2024_fixed_ns_seed0_9/known_hd_associations_ranked.csv",
+      "sha256": "7d05b78d5fbd8c613e517cd510deafc98646f253740d3578f4f55a29fe7899d8"
+    },
+    {
+      "file": "reference_results/hd_all_drugs_ranked.csv",
+      "source": "01.case_study/01.HD/results/hd_mesh2024_fixed_ns_seed0_9/all_drugs_ranked.csv",
+      "sha256": "cd718ce8d12b3399f22a22c4bab20c397151329b3e02e505e536838044edf992"
+    },
+    {
+      "file": "reference_results/hd_top20_candidates.csv",
+      "source": "01.case_study/01.HD/results/hd_mesh2024_fixed_ns_seed0_9/top20_candidates.csv",
+      "sha256": "cdfb83778c1094a1183feca3a0dd519d87951f8ef8ed38a6fa7e99f59bc70716"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "source": "Author-provided Source Data, not estimates from the figure",
+  "paper": "Bang et al. (2023), DOI 10.1038/s41467-023-39301-y",
+  "workbook_path": "data/source_data.xlsx",
+  "workbook_sha256": "3934843a02dd862c04db41aab8832951f861466c1fdfde669d7d0cdcf31d5ec5",
+  "sheet": "Figure2a",
+  "selection": "model_name == DREAMwalk",
+  "source_rows": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "repeat_seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "n": 10,
+  "metrics": {
+    "accuracy": {
+      "mean": 0.8770982707718262,
+      "SD": 0.00483834007581596
+    },
+    "auroc": {
+      "mean": 0.9440604521100605,
+      "SD": 0.004066168745035256
+    },
+    "aupr": {
+      "mean": 0.9467667350869347,
+      "SD": 0.0042579667759176515
+    }
+  },
+  "scope": "Ten seed-labelled author values are supplied; individual fold results and embedding-retraining policy for Figure 2a are not supplied."
+}
